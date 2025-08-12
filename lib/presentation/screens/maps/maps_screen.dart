@@ -203,7 +203,7 @@ class MapsScreen extends GetView<MapsController> {
         child: TextField(
           controller: controller.searchController,
           decoration: InputDecoration(
-            hintText: 'Search location',
+            hintText: 'Search existing stations',
             prefixIcon: const Icon(Icons.search),
             suffixIcon: IconButton(
               icon: const Icon(Icons.clear),
