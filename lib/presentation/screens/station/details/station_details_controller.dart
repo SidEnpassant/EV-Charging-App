@@ -4,6 +4,8 @@ import 'package:chargerrr/core/utils/app_constants.dart';
 import 'package:chargerrr/domain/entities/charging_station.dart';
 import 'package:chargerrr/domain/usecases/station/get_station_details_usecase.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class StationDetailsController extends GetxController {
   final GetStationDetailsUseCase _getStationDetailsUseCase;
@@ -76,7 +78,7 @@ class StationDetailsController extends GetxController {
     }
   }
 
-  void openMapsNavigation() {
+  Future<void> openMapsNavigation() async {
     if (station.value == null) return;
 
     final lat = station.value!.latitude;
@@ -88,6 +90,15 @@ class StationDetailsController extends GetxController {
     // Launch URL using url_launcher package
     // This would typically use url_launcher package, but we'll leave it as a TODO
     // for simplicity in this implementation
+    try {
+      await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
+    } catch (e) {
+      Get.snackbar(
+        'Error',
+        'Could not open maps application',
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    }
     debugPrint('Navigation URL: $url');
   }
 }
