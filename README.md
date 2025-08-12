@@ -1,54 +1,95 @@
-# Chargerrr - EV Charging Station Aggregator
+<div align="center">
 
-## Overview
+# Chargerrr
 
-Chargerrr is a Flutter application that helps users discover, view details, and add EV charging stations. The app provides a clean and intuitive interface for finding available charging stations, viewing their amenities, and navigating to them.
+**A Modern EV Charging Station Finder App**
 
-## Features
+[![Flutter](https://img.shields.io/badge/Flutter-3.0+-02569B?style=for-the-badge&logo=flutter&logoColor=white)](https://flutter.dev/)
+[![Supabase](https://img.shields.io/badge/Supabase-Database-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.io/)
+[![GetX](https://img.shields.io/badge/GetX-State_Management-8A2BE2?style=for-the-badge&logo=flutter&logoColor=white)](https://pub.dev/packages/get)
+[![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
 
-- **User Authentication**: Sign up, login, and logout functionality using Supabase
-- **Station Discovery**: Browse and search for charging stations
-- **Detailed Station View**: View station details, availability, amenities, and location on a map
-- **Station Creation**: Add new charging stations with details and location
-- **Map Integration**: Interactive maps for viewing and selecting locations
-- **Filtering**: Filter stations by availability and search by name or address
+<img src="assets/icons/app-logo.png" alt="Chargerrr Logo" width="120"/>
 
-## Technical Stack
+</div>
 
-- **Frontend**: Flutter
-- **State Management**: GetX
-- **Backend**: Supabase (Authentication, Database)
-- **Maps**: Google Maps Flutter
-- **Architecture**: Clean Architecture
+## 📋 Overview
 
-## Project Structure
+Chargerrr is a modern Flutter application designed to help electric vehicle owners find, explore, and contribute to a community-driven database of charging stations. With an intuitive interface and powerful features, Chargerrr makes it easy to locate available charging points when you need them most.
 
-The project follows Clean Architecture principles with the following layers:
+## ✨ Key Features
 
-- **Domain**: Contains business logic, entities, repositories interfaces, and use cases
-- **Data**: Implements repositories and data sources
-- **Presentation**: Contains UI components, screens, and controllers
-- **Core**: Contains shared utilities, constants, routes, and themes
+- **🔍 Discover Stations**: Browse and search for nearby charging stations
+- **🔐 User Authentication**: Secure sign-up, login, and profile management
+- **📍 Interactive Maps**: View stations on an interactive map interface
+- **⚡ Real-time Availability**: Check charging point availability before you arrive
+- **🏪 Amenities Information**: See what facilities are available at each location
+- **➕ Contribute**: Add new charging stations to help the community
+- **🔎 Advanced Filtering**: Filter stations by availability, amenities, and more
+- **🧭 Navigation**: Get directions to your selected charging station
 
-## Setup Instructions
+## 🏗️ Architecture
+
+Chargerrr follows Clean Architecture principles, ensuring separation of concerns and testability:
+
+```
+lib/
+├── core/            # Core utilities, constants, themes, and routes
+├── data/            # Data layer (repositories implementation, data sources, models)
+├── domain/          # Domain layer (entities, repository interfaces, use cases)
+└── presentation/    # Presentation layer (screens, widgets, controllers)
+```
+
+## 🛠️ Tech Stack
+
+- **Frontend**: Flutter & Dart
+- **State Management**: GetX for reactive state management
+- **Backend**: Supabase for authentication and database
+- **Maps**: Google Maps integration
+- **Architecture**: Clean Architecture with SOLID principles
+- **Testing**: Unit and widget tests with Mockito
+
+## 🚀 Getting Started
 
 ### Prerequisites
 
 - Flutter SDK (latest stable version)
 - Dart SDK
-- Android Studio / VS Code
+- Android Studio / VS Code with Flutter plugins
 - Supabase account
 - Google Maps API key
 
-### Environment Setup
+### Installation
 
-1. Clone the repository
-2. Create a `.env` file in the project root with the following variables:
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/yourusername/chargerrr.git
+   cd chargerrr
    ```
-   SUPABASE_URL=your_supabase_url
-   SUPABASE_ANON_KEY=your_supabase_anon_key
-   GOOGLE_MAPS_API_KEY=your_google_maps_api_key
+
+2. **Install dependencies**
+
+   ```bash
+   flutter pub get
    ```
+
+3. **Create app_credentials.dart file**
+
+   Create a file at `lib/app_credentials.dart` with your API keys:
+
+   ```dart
+   class AppCredentials {
+     static const String supabaseURL = 'YOUR_SUPABASE_URL';
+     static const String supabaseAnon = 'YOUR_SUPABASE_ANON_KEY';
+     static const String googleMapsApiKey = 'YOUR_GOOGLE_MAPS_API_KEY';
+   }
+   ```
+
+4. **Configure Google Maps**
+
+   - For Android: Add your API key to `android/app/src/main/AndroidManifest.xml`
+   - For iOS: Add your API key to `ios/Runner/AppDelegate.swift`
 
 ### Supabase Setup
 
@@ -83,29 +124,44 @@ The project follows Clean Architecture principles with the following layers:
 
 3. Set up Row Level Security (RLS) policies for your tables
 
-### Google Maps Setup
+## 🧪 Testing
 
-1. Create a Google Cloud project
-2. Enable the Maps SDK for Android and iOS
-3. Create API keys for both platforms
-4. Add the API keys to your project:
-   - For Android: Add to `android/app/src/main/AndroidManifest.xml`
-   - For iOS: Add to `ios/Runner/AppDelegate.swift`
-
-### Running the App
+The project includes comprehensive tests for all layers of the application:
 
 ```bash
-# Get dependencies
-flutter pub get
-
-# Run the app
-flutter run
-```
-
-## Testing
-
-The project includes unit tests for the domain and data layers. To run the tests:
-
-```bash
+# Run all tests
 flutter test
+
+# Run specific tests
+flutter test test/domain/usecases/auth/login_usecase_test.dart
 ```
+
+## 📱 Screenshots
+
+*Coming soon*
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 📞 Contact
+
+Project Link: [https://github.com/yourusername/chargerrr](https://github.com/yourusername/chargerrr)
+
+---
+
+<div align="center">
+
+Made with ❤️ by Your Team
+
+</div>
