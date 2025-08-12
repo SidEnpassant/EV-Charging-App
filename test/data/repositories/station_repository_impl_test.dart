@@ -99,91 +99,62 @@ void main() {
   group('createStation', () {
     test('should create station when call is successful', () async {
       // Arrange
-      const name = 'New Station';
-      const address = '456 New St, New City';
-      const latitude = 37.7749;
-      const longitude = -122.4194;
-      const totalPoints = 5;
-      const availablePoints = 3;
-      final amenities = ['WiFi', 'Restrooms'];
+      final newStation = ChargingStation(
+        name: 'New Station',
+        address: '456 New St, New City',
+        latitude: 37.7749,
+        longitude: -122.4194,
+        totalPoints: 5,
+        availablePoints: 3,
+        amenities: ['WiFi', 'Restrooms'],
+      );
+      
+      final stationModel = ChargingStationModel(
+        id: '',
+        name: newStation.name,
+        address: newStation.address,
+        latitude: newStation.latitude,
+        longitude: newStation.longitude,
+        totalPoints: newStation.totalPoints,
+        availablePoints: newStation.availablePoints,
+        amenities: newStation.amenities,
+        createdAt: null,
+        createdBy: null,
+      );
 
-      when(mockDataSource.createStation(
-        name: name,
-        address: address,
-        latitude: latitude,
-        longitude: longitude,
-        totalPoints: totalPoints,
-        availablePoints: availablePoints,
-        amenities: amenities,
-      )).thenAnswer((_) async => testStationModel);
+      when(mockDataSource.createStation(any))
+          .thenAnswer((_) async => testStationModel);
 
       // Act
-      final result = await repository.createStation(
-        name: name,
-        address: address,
-        latitude: latitude,
-        longitude: longitude,
-        totalPoints: totalPoints,
-        availablePoints: availablePoints,
-        amenities: amenities,
-      );
+      final result = await repository.createStation(newStation);
 
       // Assert
       expect(result, equals(testStationModel));
-      verify(mockDataSource.createStation(
-        name: name,
-        address: address,
-        latitude: latitude,
-        longitude: longitude,
-        totalPoints: totalPoints,
-        availablePoints: availablePoints,
-        amenities: amenities,
-      ));
+      verify(mockDataSource.createStation(any));
       verifyNoMoreInteractions(mockDataSource);
     });
 
     test('should throw exception when data source call fails', () async {
       // Arrange
-      const name = 'New Station';
-      const address = '456 New St, New City';
-      const latitude = 37.7749;
-      const longitude = -122.4194;
-      const totalPoints = 5;
-      const availablePoints = 3;
-      final amenities = ['WiFi', 'Restrooms'];
+      final newStation = ChargingStation(
+        name: 'New Station',
+        address: '456 New St, New City',
+        latitude: 37.7749,
+        longitude: -122.4194,
+        totalPoints: 5,
+        availablePoints: 3,
+        amenities: ['WiFi', 'Restrooms'],
+      );
 
-      when(mockDataSource.createStation(
-        name: name,
-        address: address,
-        latitude: latitude,
-        longitude: longitude,
-        totalPoints: totalPoints,
-        availablePoints: availablePoints,
-        amenities: amenities,
-      )).thenThrow(Exception('Failed to create station'));
+      when(mockDataSource.createStation(any))
+          .thenThrow(Exception('Failed to create station'));
 
       // Act & Assert
       expect(
-        () => repository.createStation(
-          name: name,
-          address: address,
-          latitude: latitude,
-          longitude: longitude,
-          totalPoints: totalPoints,
-          availablePoints: availablePoints,
-          amenities: amenities,
-        ),
+        () => repository.createStation(newStation),
         throwsA(isA<Exception>()),
       );
-      verify(mockDataSource.createStation(
-        name: name,
-        address: address,
-        latitude: latitude,
-        longitude: longitude,
-        totalPoints: totalPoints,
-        availablePoints: availablePoints,
-        amenities: amenities,
-      ));
+      verify(mockDataSource.createStation(any));
       verifyNoMoreInteractions(mockDataSource);
     });
   });
